@@ -11,7 +11,11 @@ class Logon extends CI_Controller {
     public function index()
     {
         if($this->is_logged()){
-            redirect("main");
+            if($this->is_admin()){
+                redirect("admin");
+            } else {
+                redirect("main");
+            }
         } else {
             $this->load->view('logon');
         }

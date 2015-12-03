@@ -112,7 +112,19 @@ class CI_Controller {
             }
             return false;
         }
+        
+        protected function is_admin(){
+            $session = $this->session->get_userdata();
+            $this->load->model('logon_model');
+            $logon_model = new Logon_Model;
+            $tecnico = $logon_model->getTecnicoById($session["id"]);
+            return $tecnico[0]->admin;
+        }
 
+}
+
+function url($pag){
+    return "http://localhost/service_desk/$pag";
 }
 
 function redirect($pag){
