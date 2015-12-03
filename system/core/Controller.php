@@ -92,5 +92,30 @@ class CI_Controller {
 	{
 		return self::$instance;
 	}
+        
+        protected function is_logged(){
+            $session = $this->session->get_userdata();
+            if(isset($session["id"])){
+                $this->load->model('logon_model');
+                $logon_model = new Logon_Model;
+        
+                $tecnico = $logon_model->getTecnicoById($session["id"]);
+                
+                if($tecnico){
+                    
+                    $senha_esperada = hash('sha512', $tecnico[0]->senha . $_SERVER['HTTP_USER_AGENT']);
+                    if($senha_esperada == $session["login_string"]){
+                        return true;
+                    }
+                    
+                }
+            }
+            return false;
+        }
 
+}
+
+function redirect($pag){
+    header("Location: http://localhost/service_desk/$pag");
+    exit();
 }
