@@ -13,5 +13,20 @@ class Logon_Model extends CI_Model {
         return $this->db->get('usuario')->result();
     }
     
+    public function getTecnicoById($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->get('usuario')->result();
+    }
     
+    public function genAdmin($usuario, $senha, $salt)
+    {
+        $data = [
+            "usuario" => $usuario,
+            "senha" => $senha,
+            "salt" => $salt
+        ];
+        
+        $this->db->insert('usuario', $data);
+    }
 }

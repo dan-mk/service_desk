@@ -10,7 +10,11 @@ class Logon extends CI_Controller {
     
     public function index()
     {
-        $this->load->view('logon');
+        if($this->is_logged()){
+            redirect("main");
+        } else {
+            $this->load->view('logon');
+        }
     }
     
     public function logar()
@@ -23,13 +27,31 @@ class Logon extends CI_Controller {
             $logon_model = new Logon_Model;
         
             $tecnico = $logon_model->getTecnicoByUsuario($usuario);
-            if($tecnico && md5($tecnico[0]->salt.$senha) == $tecnico[0]->senha){
+            if($tecnico){
                 
-                //Logado
+                $senha_input = hash('sha512', $tecnico[0]->salt . $senha);
+                $senha_banco = $tecnico[0]->senha;
                 
+                if($senha_input === $senha_banco){
+                
+                    // Logado
+                    $login_string = hash('sha512', $tecnico[0]->senha . $_SERVER['HTTP_USER_AGENT']);
+                    $session = array(
+                        'id'  => $tecnico[0]->id,
+                        'login_string' => $login_string
+                    );
+                    $this->session->set_userdata($session);
+                    redirect("main");
+                }
             }
         }
-        
+        redirect("logon");
+    }
+    
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect("logon");
     }
     
 }
