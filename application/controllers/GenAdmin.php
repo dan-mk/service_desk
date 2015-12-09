@@ -10,14 +10,16 @@ class GenAdmin extends CI_Controller {
     
     public function index()
     {
-        $this->load->model('logon_model');
-        $logon_model = new Logon_Model;
+        $this->load->model('tecnico_model');
+        $m_tecnico = new Tecnico_Model;
         
-        $usuario = "add";
+        $usuario = "adm";
+        $nome = "Admin";
+        $cpf = "000.000.000-00";
+        $telefone = "(49) 3333-3333";
         $senha = "123";
-        $salt = mt_rand(0, 1000000000);
         
-        $logon_model->genAdmin($usuario, hash('sha512', $salt . $senha), $salt);
+        $m_tecnico->insertTecnico($usuario, $nome, $cpf, $telefone, $senha, 1);
     }
     
 }

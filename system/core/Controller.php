@@ -94,17 +94,17 @@ class CI_Controller {
 	}
         
         protected function is_logged(){
-            $session = $this->session->get_userdata();
-            if(isset($session["id"])){
-                $this->load->model('logon_model');
-                $logon_model = new Logon_Model;
+            $id = $this->session->userdata('id');
+            $login_string = $this->session->userdata('login_string');
+            if(isset($id, $login_string)){
+                $this->load->model('tecnico_model');
+                $m_tecnico = new Tecnico_Model;
         
-                $tecnico = $logon_model->getTecnicoById($session["id"]);
-                
+                $tecnico = $m_tecnico->getTecnicoById($id);
                 if($tecnico){
                     
                     $senha_esperada = hash('sha512', $tecnico[0]->senha . $_SERVER['HTTP_USER_AGENT']);
-                    if($senha_esperada == $session["login_string"]){
+                    if($senha_esperada == $login_string){
                         return true;
                     }
                     
@@ -115,19 +115,19 @@ class CI_Controller {
         
         protected function is_admin(){
             $session = $this->session->get_userdata();
-            $this->load->model('logon_model');
-            $logon_model = new Logon_Model;
-            $tecnico = $logon_model->getTecnicoById($session["id"]);
+            $this->load->model('tecnico_model');
+            $m_tecnico = new Tecnico_Model;
+            $tecnico = $m_tecnico->getTecnicoById($session["id"]);
             return $tecnico[0]->admin;
         }
 
 }
 
 function url($pag){
-    return "http://localhost/service_desk/$pag";
+    return "http://$_SERVER[SERVER_NAME]/service_desk/$pag";
 }
 
 function redirect($pag){
-    header("Location: http://localhost/service_desk/$pag");
+    header("Location: http://$_SERVER[SERVER_NAME]/service_desk/$pag");
     exit();
 }

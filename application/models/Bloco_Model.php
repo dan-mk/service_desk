@@ -1,6 +1,6 @@
 <?php
 
-class Bloco extends CI_Model {
+class Bloco_Model extends CI_Model {
 
     public function __construct()
     {
