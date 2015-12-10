@@ -20,9 +20,19 @@ class Tecnico_Model extends CI_Model {
         return $this->db->get('tecnico')->result();
     }
 
-    public function insertTecnico($usuario, $nome, $cpf, $telefone, $senha, $admin = 0) {
+    public function insertTecnico($usuario, $nome, $senha, $admin,
+            $cpf = "xxx.xxx.xxx-xx", $telefone = "(xx) xxxx-xxxx") {
         $salt = hash('sha512', mt_rand(0, 1000000000));
         $senha = hash('sha512', $salt . $senha);
+        
+        if(empty($cpf)){
+            $cpf = "xxx.xxx.xxx-xx";
+        }
+        
+        if(empty($telefone)){
+            $telefone = "(xx) xxxx-xxxx";
+        }
+
         $data = [
             "usuario" => $usuario,
             "nome" => $nome,

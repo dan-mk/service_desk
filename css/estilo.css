@@ -26,7 +26,7 @@ a{
 }
 
 .padding{
-    padding: 14px;
+    padding: 15px 18px;
 }
 
 .input-text{
@@ -68,6 +68,10 @@ a{
     padding: 20px;
 }
 
+#header .wrap{
+    position: relative;
+}
+
 .logo img{
     float: left;
     margin: 0 20px 0 15px;
@@ -80,14 +84,20 @@ a{
     padding-top: 7px;
 }
 
+.logout{
+    position: absolute;
+    right: 14px;
+    top: 35%;
+}
+
 .tecnico_header{
     background: #f3f3f3;
     float: right;
     font-size: 14px;
-    padding: 12px;
+    padding: 12px 40px 12px 12px;
     white-space: nowrap;
     width: 50%;
-    max-width: 200px;
+    max-width: 230px;
 }
 
 .tecnico_header img{
@@ -177,7 +187,11 @@ a{
     font-size: 18px;
 }
 
-.inner-box input[type=text]{
+.sub-header a{
+    text-decoration: underline;
+}
+
+.inner-box input[type=text], .inner-box input[type=password]{
     background: #efefef;
     border: 1px solid #d9d9d9;
     font: 16px Arial, sans-serif;

@@ -20,6 +20,15 @@
                 ?>
             </span>
         </a>
+        <?php
+        if($logged){
+        ?>
+        <a class="logout" href="<?= url("logon/logout") ?>">
+            <img src="<?= url("img/logout.png") ?>" alt="Sair" />
+        </a>
+        <?php
+        }
+        ?>
         <a class="logo" href="<?= url("") ?>">
             <img src="<?= url("img/logo_ifsc.png"); ?>" />
             <h1>

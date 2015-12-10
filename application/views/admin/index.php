@@ -37,7 +37,11 @@
                 
                 foreach($blocos as $bloco){
                 ?>
-                <li><a href="#"><img src="<?= url("img/bloco_lista.png") ?>" /><?= $bloco->nome ?></a></li>
+                <li>
+                    <a href="<?= url("admin/bloco/$bloco->idBloco") ?>">
+                        <img src="<?= url("img/bloco_lista.png") ?>" /><?= $bloco->nome ?>
+                    </a>
+                </li>
                 <?php
                 }
                 ?>
