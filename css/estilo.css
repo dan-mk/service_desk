@@ -35,6 +35,31 @@ a{
 
 .input{ display: none; }
 
+
+.inner-box{
+    border: 2px solid #d9d9d9;
+    margin: 0 auto 10px;
+    background: white;
+}
+
+.inner-box header{
+    background: white;
+    padding: 12px 17px;
+}
+
+.inner-box header h1{
+    font-weight: normal;
+}
+
+.inner-box header a{
+    float: right;
+    font-size: 14px;
+    padding: 7px;
+    display: block;
+    margin: -5px;
+}
+
+
 /* HEADER */
 
 #header{
@@ -118,9 +143,48 @@ a{
 
 /* CONTEÚDO */
 
+.link-cabecalho{
+    float: right;
+    display: block;
+    margin: -10px 0;
+    padding: 13px 10px;
+    font-size: 14px;
+}
 
+.sub-header{
+    border-top: 1px solid #bbb;
+    background: white;
+}
 
+.sub-header::before{
+    content: "";
+    background: #ddd;
+    width: 100%;
+    display: block;
+    height: 2px;
+}
 
+.sub-header div{
+    padding: 16px 26px;
+}
+
+.sub-header span{
+    font-size: 12px;
+}
+
+.sub-header h2{
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.inner-box input[type=text]{
+    background: #efefef;
+    border: 1px solid #d9d9d9;
+    font: 16px Arial, sans-serif;
+    padding: 6px 10px;
+    width: 100%;
+    margin: 6px 0;
+}
 
 .item{
     background: white;
@@ -181,6 +245,17 @@ a{
 .mostrar li a img{
     margin-right: 15px;
     float: left;
+}
+
+.mostrar2 li{
+    width: 31.46% !important;
+    white-space: nowrap;
+}
+
+.mostrar2 li a{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 16px;
 }
 
 /* SALAS */

@@ -11,6 +11,10 @@ class Admin extends CI_Controller {
     public function index() {
         if ($this->is_logged()) {
             if ($this->is_admin()) {
+                $this->load->view("core/head");
+                $data["logged"] = $this->is_logged();
+                $this->load->view("core/cabecalho", $data);
+                $this->load->model("bloco_model");
                 $this->load->view('admin/index');
             } else {
                 $this->load->view('admin/forbidden');
@@ -49,6 +53,9 @@ class Admin extends CI_Controller {
                 $bloco->insertBloco($nome, $prioridade);
                 redirect("admin");
             } else {
+                $this->load->view('core/head');
+                $data["logged"] = $this->is_logged();
+                $this->load->view("core/cabecalho", $data);
                 $this->load->view('admin/adicionar_bloco');
             }
         } else {

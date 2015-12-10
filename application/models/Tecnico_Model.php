@@ -15,6 +15,10 @@ class Tecnico_Model extends CI_Model {
         $this->db->where('idtecnico', $id);
         return $this->db->get('tecnico')->result();
     }
+    
+    public function getAll(){
+        return $this->db->get('tecnico')->result();
+    }
 
     public function insertTecnico($usuario, $nome, $cpf, $telefone, $senha, $admin = 0) {
         $salt = hash('sha512', mt_rand(0, 1000000000));
