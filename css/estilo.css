@@ -1,0 +1,339 @@
+/* GERALZÃO */
+
+*{
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body{
+    font-family: Arial;
+    margin: 0;
+    background: #6ea847;
+}
+
+.wrap{
+    max-width: 900px; margin: auto;
+}
+
+li{
+    display: block;
+    list-style: none;
+}
+
+a{
+    color: black;
+}
+
+.padding{
+    padding: 14px;
+}
+
+.input-text{
+    font-size: 14px;
+}
+
+.input{ display: none; }
+
+/* HEADER */
+
+#header{
+    background: white;
+    border-bottom: 5px solid #efefef;
+    padding: 20px;
+}
+
+.logo img{
+    float: left;
+    margin: 0 20px 0 15px;
+    width: 40px;
+}
+
+.logo h1{
+    color: black;
+    font-weight: normal; font-size: 20px;
+    padding-top: 7px;
+}
+
+.tecnico_header{
+    background: #f3f3f3;
+    float: right;
+    font-size: 14px;
+    padding: 12px;
+    white-space: nowrap;
+    width: 50%;
+    max-width: 200px;
+}
+
+.tecnico_header img{
+    float: left;
+    margin-right: 10px;
+    padding-top: 6px;
+}
+
+.tecnico_header span{
+    margin: 8px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+/* LOGIN */
+
+.conectar_form{
+    background: white;
+    border: 2px solid #5a8a3a;
+    margin: 15px auto;
+    width: 100%;
+    max-width: 400px;
+}
+
+.conectar_form input[type=text], .conectar_form input[type=password]{
+    background: #efefef;
+    border: 1px solid #d9d9d9;
+    font: 16px Arial, sans-serif;
+    padding: 6px 10px;
+    width: 100%;
+    margin: 6px 0;
+}
+
+.footer-box{
+    background: #efefef;
+}
+
+.footer-box::after{
+    display: block;
+    clear: both;
+    content: "";
+}
+
+.footer-box input{
+    background: transparent;
+    border: 0;
+    float: right;
+    font-size: 15px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+/* CONTEÚDO */
+
+
+
+
+
+.item{
+    background: white;
+    display: block;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 9px; padding: 21px 26px;
+}
+
+.item::before{
+    background: url('../img/item_seta_direita.png');
+    content: "";
+    display: block;
+    float: left;
+    height: 11px; width: 6px;
+    margin-right: 11px; margin-top: 4px;
+}.input[type="checkbox"]:checked + .item::before{
+    background: url('../img/item_seta_baixo.png');
+    height: 6px; width: 11px;
+    margin-right: 10px; margin-top: 7px; margin-left: -4px;
+}
+
+.mostrar{
+    background: #efefef;
+    overflow: hidden;
+    transition: ease 300ms;
+    padding: 0 6px;
+}
+
+.h0{
+    height: 0px;
+}
+
+.mostrar::before{
+    content: "";
+    display: block;
+    height: 11px;
+}
+
+.mostrar li{
+    float: left;
+    width: 23.6%;
+    margin: 0 0.7% 11px 0.7%;
+}
+
+.mostrar li a{
+    border: 2px solid #efefef;
+    display: block;
+    color: black; font-size: 18px;
+    line-height: 1.85em;
+    padding: 11px 12px;
+    text-decoration: none;
+}.mostrar li a:hover{
+    background: white;
+    border: 2px solid #e0e0e0;
+}
+
+.mostrar li a img{
+    margin-right: 15px;
+    float: left;
+}
+
+/* SALAS */
+
+.header-sala{
+    background: white;
+    margin-top: 9px; padding: 21px 26px 19px;
+}
+
+.header-sala::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.header-sala h1{
+    float: left;
+    font-size: 20px; font-weight: normal;
+}
+
+.computador-sala li a{
+    line-height: 1.65em !important;
+}
+
+.pesquisa{
+    background: #efefef;
+    border: 0;
+    font: 15px Arial, sans-serif;
+    float: right;
+    margin: -4px 0; padding: 6px 10px;
+    max-width: 65%;
+}
+
+.botao-pesquisa{
+    background: url(../img/pesquisa.png) no-repeat;
+    background-position: center;
+    border: 0;
+    float: right;
+    height: 30px; width: 40px;
+    margin: -4px 0; margin-right: -10px;
+}
+
+/* EQUIPAMENTO */
+
+.equipamento{
+    background: #efefef;
+}
+
+.equipamento div{
+    padding: 16px 22px;
+}
+
+.header-equipamento{
+    background: white;
+    font-size: 20px; font-weight: normal;
+    margin-top: 9px; padding: 21px 26px 19px;
+}
+
+.header-equipamento img{
+    float: left;
+    margin: -4px 18px 0 -2px;
+}
+
+.h2-equipamento{
+    font-size: 16px; font-weight: normal;
+    padding: 0 0 10px;
+}
+
+.borda-equipamento{
+    background: white;
+    border: 2px solid #d9d9d9;
+    margin-bottom: 15px;
+}
+
+.borda-equipamento span{
+    color: #555;
+    float: right;
+    font-size: 12px;
+}
+
+.borda-equipamento h3{
+    font-size: 16px; font-weight: normal;
+    padding: 4px;
+}
+
+.borda-equipamento p{
+    font-size: 16px;
+    padding: 4px;
+}
+
+.anonimo{
+    color: #555;
+}
+
+.borda-equipamento div{
+    padding: 11px;
+}
+
+.descricao, .nome{
+    background: #efefef;
+    border: 0;
+    font: 16px Arial, sans-serif;
+    padding: 6px 10px;
+}
+
+.descricao{
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.nome{
+    width: 75%;
+}
+
+.enviar{
+    background: white;
+    border: 1px solid #d9d9d9;
+    float: right;
+    font-size: 16px;
+    padding: 5px;
+    width: 23.5%;
+}
+
+h3.tecnico{
+    font-weight: bold !important;
+}
+
+div.tecnico{
+    background: #efefef;
+}
+
+
+/* RESPONSIVO */
+
+@media screen and (max-width: 920px){
+    body{
+        /*background: #ccc;*/
+    }
+}
+
+@media screen and (max-width: 750px){
+    .mostrar li{
+        width: 31.93%;
+        margin: 0 0.7% 11px 0.7%;
+    }
+}
+
+@media screen and (max-width: 530px){
+    .mostrar li{
+        width: 48.6%;
+        margin: 0 0.7% 11px 0.7%;
+    }
+    .equipamento > div{
+        padding: 16px;
+    }
+}

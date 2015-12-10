@@ -16,6 +16,9 @@ class Logon extends CI_Controller {
                 redirect("main");
             }
         } else {
+            $this->load->view("core/head");
+            $data["logged"] = false;
+            $this->load->view("core/cabecalho", $data);
             $this->load->view('logon/logon_form');
         }
     }
