@@ -6,6 +6,22 @@
                 <div class="padding">
                     <span class="input-text">Nome da sala</span>
                     <input name="nome" type="text" value="<?= $sala->nome ?>" autocomplete="off"/>
+                    
+                    <span class="input-text">Mudar de bloco</span>
+                    <select name="id_bloco">
+                        <option selected value='0'>Mudar de bloco...</option>
+                        <?php
+                        $blocos = $this->bloco_model->getAll();
+                        foreach($blocos as $bloco){
+                            if($bloco->idBloco != $sala->Bloco_idBloco){
+                        ?>
+                        <option value="<?= $bloco->idBloco ?>"><?= $bloco->nome ?></option>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                    
                     <span class="input-text">Exclusão da sala</span>
                     <input id="excluir" name="excluir" type="checkbox" />
                     <label for="excluir">Excluir esta sala</label>

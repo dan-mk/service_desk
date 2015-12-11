@@ -4,8 +4,11 @@
     $equipamento = $this->equipamento_model->getEquipamentoById($id_equipamento);
     
     ?>
+    
     <h1 class="header-equipamento">
-        <img src="<?= url("img/computador.png"); ?>" /><?= $equipamento[0]->codigo ?>
+        <img src="<?= url("img/computador.png"); ?>" />
+        <span><?= $caminho ?></span>
+        <?= $equipamento[0]->codigo ?>
     </h1>
     <div>
         <?php

@@ -14,12 +14,14 @@ class Problema_Model extends CI_Model {
     public function getActiveFromEquipamento($id_equipamento) {
         $this->db->where("equipamento_idequipamento", $id_equipamento);
         $this->db->where("idproblema NOT IN (SELECT problema_idproblema FROM resolucao)");
+        $this->db->order_by("data_problema", "desc"); 
         return $this->db->get('problema')->result();
     }
     
     public function getHistoricoFromEquipamento($id_equipamento) {
         $this->db->where("equipamento_idequipamento", $id_equipamento);
         $this->db->where("idproblema IN (SELECT problema_idproblema FROM resolucao)");
+        $this->db->order_by("data_problema", "desc");
         return $this->db->get('problema')->result();
     }
 

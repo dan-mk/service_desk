@@ -6,7 +6,13 @@ class Sala_Model extends CI_Model {
         parent::__construct();
     }
 
+    public function getAll(){
+        $this->db->order_by("bloco_idbloco", "ASC", "nome");
+        return $this->db->get('sala')->result();
+    }
+    
     public function getAllFromBloco($id_bloco) {
+        $this->db->order_by("nome");
         $this->db->where("bloco_idbloco", $id_bloco);
         return $this->db->get('sala')->result();
     }

@@ -12,6 +12,7 @@ class Bloco_Model extends CI_Model {
     }
 
     public function getAll() {
+        $this->db->order_by('prioridade', "ASC", "nome");
         return $this->db->get('bloco')->result();
     }
 
