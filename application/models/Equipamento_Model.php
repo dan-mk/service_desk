@@ -34,5 +34,11 @@ class Equipamento_Model extends CI_Model {
         $this->db->where('idequipamento', $id_equipamento);
         $this->db->update('equipamento', $data); 
     }
+    
+    public function deleteEquipamento($id_equipamento){
+        $this->db->where('idEquipamento', $id_equipamento);
+        $this->db->delete('equipamento');
+    }
+    
 
 }

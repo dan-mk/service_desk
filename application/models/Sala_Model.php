@@ -32,5 +32,10 @@ class Sala_Model extends CI_Model {
         ];
         $this->db->insert('sala', $data);
     }
+    
+    public function deleteSala($id_sala){
+        $this->db->where('idSala', $id_sala);
+        $this->db->delete('sala');
+    }
 
 }

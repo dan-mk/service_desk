@@ -31,5 +31,10 @@ class Bloco_Model extends CI_Model {
         $this->db->where('idbloco', $id_bloco);
         $this->db->update('bloco', $data); 
     }
+    
+    public function deleteBloco($id_bloco){
+        $this->db->where('idBloco', $id_bloco);
+        $this->db->delete('bloco');
+    }
 
 }

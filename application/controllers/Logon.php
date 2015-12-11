@@ -50,6 +50,8 @@ class Logon extends CI_Controller {
                 }
             }
         }
+        echo $senha_input;
+        exit();
         redirect("logon");
     }
 

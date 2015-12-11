@@ -29,6 +29,78 @@ a{
     padding: 15px 18px;
 }
 
+/* Checkbox */
+
+.padding input[type=checkbox]{
+    display: none;
+}
+
+.padding > label{
+    cursor: pointer;
+    display: block;
+    margin-top: 13px;
+    font-size: 14px;
+}
+
+.padding > label::before{
+    content: "";
+    width: 26px;
+    height: 26px;
+    float: left;
+    margin-top: -5px;
+    margin-right: 10px;
+    background: #efefef;
+    border: 1px solid #d9d9d9;
+}
+
+.padding > input[type=checkbox]:checked + label::before{
+    content: "X";
+    color: white;
+    background: black;
+    padding: 5px 8px;
+    width: 10px;
+    height: 16px;
+}
+
+.padding p{
+    font-size: 12px;
+    color: #cc1717;
+    width: 100%;
+    max-width: 240px;
+    margin-top: 15px;
+    padding: 9px 12px;
+    border: 1px solid #d9d9d9;
+}
+
+/* Radio */
+
+.padding input[type=radio]{
+    display: none;
+}
+
+.padding div label{
+    cursor: pointer;
+    display: block;
+    margin-top: 13px;
+    font-size: 14px;
+}
+
+.padding div label::before{
+    content: "";
+    width: 18px;
+    border-radius: 100%;
+    height: 18px;
+    float: left;
+    margin-top: -2px;
+    margin-right: 10px;
+    background: #efefef;
+    border: 1px solid #d9d9d9;
+}
+
+.padding div input[type=radio]:checked + label::before{
+    background: black;
+}
+
 .input-text{
     font-size: 14px;
 }
@@ -228,8 +300,18 @@ a{
     padding: 0 6px;
 }
 
+.result0{
+    padding: 8px 15px 15px;
+    color: #444;
+}
+
 .h0{
     height: 0px;
+}
+
+.h0-move{
+    overflow: hidden;
+    transition: ease 300ms;
 }
 
 .mostrar::before{

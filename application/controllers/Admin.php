@@ -117,7 +117,7 @@ class Admin extends CI_Controller {
                 $data["titulo_cabecalho"] = $bloco[0]->nome;
                 $this->load->view("core/area_admin", $data);
                 $this->load->model("sala_model");
-                $data["id_bloco"] = $id_bloco;
+                $data["bloco"] = $bloco[0];
                 $this->load->view("admin/bloco", $data);
             }
         } else {
@@ -189,7 +189,7 @@ class Admin extends CI_Controller {
                     $m_sala->deleteSala($id_sala);
                     redirect("admin/bloco/$id_bloco");
                 } else {
-                    $m_bloco->updateSala($id_sala, $nome, $novo_bloco);
+                    $m_sala->updateSala($id_sala, $nome, $novo_bloco);
                     redirect("admin/sala/$id_sala");
                 }
             } else {
@@ -201,7 +201,7 @@ class Admin extends CI_Controller {
                 $this->load->view("core/area_admin", $data);
                 $this->load->model("sala_model");
                 $this->load->model("equipamento_model");
-                $data["id_sala"] = $id_sala;
+                $data["sala"] = $sala[0];
                 $this->load->view("admin/sala", $data);
             }
         } else {
@@ -215,13 +215,21 @@ class Admin extends CI_Controller {
             $codigo = $this->input->post("codigo");
             $id_tipo = $this->input->post("id_tipo");
             
+            if($codigo && $id_tipo == 0 && $id_sala){
+                $tipo_novo = $this->input->post("tipo_novo");
+                $this->load->model("tipo_model");
+                $m_tipo = new Tipo_Model;
+                $m_tipo->insertTipo($tipo_novo);
+                $id_tipo = $this->db->insert_id();
+            }
+            
             if ($codigo && $id_tipo && $id_sala) {
                 $this->load->model("equipamento_model");
                 $equipamento = new Equipamento_Model;
 
-                $equipamento->insertEquipamento($codigo, $id_tipo, $id_sala);
+                $equipamento->insertEquipamento($codigo, $id_sala, $id_tipo);
                 $id_equipamento = $this->db->insert_id();
-                redirect("admin/equipamento/$id_equipamento");
+                redirect("admin/sala/$id_sala");
             } else {
                 $this->load->model("sala_model");
                 $this->load->model("equipamento_model");
@@ -249,4 +257,62 @@ class Admin extends CI_Controller {
         }
     }
 
+    
+    public function equipamento($id_equipamento){
+        if ($this->is_logged() && $this->is_admin()) {
+            
+            $this->load->model("equipamento_model");
+            $m_equipamento = new Equipamento_Model;
+            $equipamento = $m_equipamento->getEquipamentoById($id_equipamento);
+            
+            if(!$equipamento){
+                redirect("admin");
+            }
+            
+            $id_sala = $equipamento[0]->Sala_idSala;
+            
+            $codigo = $this->input->post("codigo");
+            $excluir = $this->input->post("excluir");
+            $nova_sala = $this->input->post("nova_sala");
+            
+            if(!$nova_sala){
+                $nova_sala = $id_sala;
+            }
+            
+            $this->load->model("sala_model");
+            $m_sala = new Sala_Model;
+            $sala = $m_sala->getSalaById($id_sala);
+            
+            $id_bloco = $sala[0]->Bloco_idBloco;
+            
+            $this->load->model("bloco_model");
+            $m_bloco = new Bloco_Model;
+            $bloco = $m_bloco->getBlocoById($id_bloco);
+            
+            if ($codigo) {
+                if($excluir){
+                    $m_equipamento->deleteEquipamento($id_equipamento);
+                    redirect("admin/sala/$id_sala");
+                } else {
+                    $m_equipamento->updateEquipamento($id_equipamento, $codigo, $nova_sala);
+                    redirect("admin/equipamento/$id_equipamento");
+                }
+            } else {
+                $this->load->view('core/head');
+                $data["logged"] = $this->is_logged();
+                $this->load->view("core/cabecalho", $data);
+                $data["caminho"] = "<a href=\"".url("admin/bloco/$id_bloco")."\">{$bloco[0]->nome}</a>"
+                . " - <a href=\"".url("admin/sala/$id_sala")."\">{$sala[0]->nome}</a> - Equipamento:";
+                $data["titulo_cabecalho"] = $equipamento[0]->codigo;
+                $this->load->view("core/area_admin", $data);
+                $this->load->model("equipamento_model");
+                $data["equipamento"] = $equipamento[0];
+                $this->load->view("admin/equipamento", $data);
+            }
+        } else {
+            $this->load->view('admin/forbidden');
+        }
+    }
+    
+    
 }

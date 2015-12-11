@@ -1,14 +1,43 @@
 <ul class="wrap">
+    <?php
+    
+    $blocos = $this->bloco_model->getAll();
+    
+    $cont = 1;
+    foreach ($blocos as $bloco) {
+    ?>
     <li>
-        <input id="input1" class="input" type="checkbox" />
-        <label id="first" for="input1" class="item" onclick="abrir('box1');">
-            Laboratórios de informática
+        <input id="input<?= $cont ?>" class="input" type="checkbox" />
+        <label
+            <?php
+            if($cont == 1){
+                echo "id=\"first\"";
+            }
+            ?>
+            for="input<?= $cont ?>" class="item" onclick="abrir('box<?= $cont ?>');">
+            <?= $bloco->nome ?>
         </label>
-        <ul id="box1" class="mostrar h0">
-            <li><a href="#"><img src="img/porta.png" />F51</a></li>
-            <li><a href="#"><img src="img/porta.png" />F52</a></li>
-            <li><a href="#"><img src="img/porta.png" />F55</a></li>
-            <li><a href="#"><img src="img/porta.png" />F56</a></li>
+        <ul id="box<?= $cont ?>" class="mostrar h0">
+            <?php
+            
+            $salas = $this->sala_model->getAllFromBloco($bloco->idBloco);
+            
+            foreach ($salas as $sala) {
+            ?>
+            <li>
+                <a href="<?= url("sala/$sala->idSala") ?>">
+                    <img src="img/porta.png" /><?= $sala->nome ?>
+                </a>
+            </li>
+            <?php
+                $cont++;
+            }
+            ?>
+            
         </ul>
     </li>
+    <?php
+    }
+    ?>
+    
 </ul>
