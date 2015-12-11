@@ -101,6 +101,15 @@ a{
     background: black;
 }
 
+/* select */
+
+.padding select{
+    display: block;
+    padding: 6px 12px;
+    background: #efefef;
+    margin: 6px 0 17px;
+}
+
 .input-text{
     font-size: 14px;
 }
@@ -361,6 +370,12 @@ a{
     margin-top: 9px; padding: 21px 26px 19px;
 }
 
+.header-sala img{
+    float: left;
+    margin: -5px 15px -5px 0;
+    display: block;
+}
+
 .header-sala::after{
     content: "";
     display: block;
@@ -400,7 +415,7 @@ a{
     background: #efefef;
 }
 
-.equipamento div{
+.equipamento > div{
     padding: 16px 22px;
 }
 
@@ -410,9 +425,18 @@ a{
     margin-top: 9px; padding: 21px 26px 19px;
 }
 
+.header-equipamento span{
+    font-size: 12px;
+    display: block;
+}
+
+.header-equipamento a{
+    text-decoration: underline;
+}
+
 .header-equipamento img{
     float: left;
-    margin: -4px 18px 0 -2px;
+    margin: 4px 18px 0 -2px;
 }
 
 .h2-equipamento{

@@ -25,11 +25,10 @@ class Equipamento_Model extends CI_Model {
         $this->db->insert('equipamento', $data);
     }
     
-    public function updateEquipamento($id_equipamento, $codigo, $id_sala, $id_tipo) {
+    public function updateEquipamento($id_equipamento, $codigo, $id_sala) {
         $data = [
             "codigo" => $codigo,
-            "sala_idsala" => $id_sala,
-            "tipo_idtipo" => $id_tipo
+            "sala_idsala" => $id_sala
         ];
         $this->db->where('idequipamento', $id_equipamento);
         $this->db->update('equipamento', $data); 

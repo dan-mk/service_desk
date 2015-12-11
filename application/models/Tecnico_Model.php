@@ -44,5 +44,30 @@ class Tecnico_Model extends CI_Model {
         ];
         $this->db->insert('tecnico', $data);
     }
+    
+    
+    function getUltimosProblemas(){
+        $query = $this->db->query('SELECT equipamento.* FROM equipamento INNER JOIN problema '
+                . 'ON idequipamento = equipamento_idequipamento WHERE idproblema '
+                . 'NOT IN (SELECT problema_idproblema FROM resolucao) GROUP BY idequipamento '
+                . 'ORDER BY max(data_problema) DESC LIMIT 6');
+        return $query->result(); 
+    }
+    
+    function getUltimosResolvidos(){
+        $query = $this->db->query('SELECT equipamento.* FROM equipamento INNER JOIN problema '
+                . 'ON idequipamento = equipamento_idequipamento INNER JOIN resolucao '
+                . 'ON idproblema = problema_idproblema GROUP BY idequipamento '
+                . 'ORDER BY max(data_resolucao) DESC LIMIT 6');
+        return $query->result(); 
+    }
+    
+    function getUltimosResolvidosPorVoce($id_tecnico){
+        $query = $this->db->query('SELECT equipamento.* FROM equipamento INNER JOIN problema '
+                . 'ON idequipamento = equipamento_idequipamento INNER JOIN resolucao '
+                . 'ON idproblema = problema_idproblema WHERE tecnico_idtecnico = '.$id_tecnico.' '
+                . 'GROUP BY idequipamento ORDER BY max(data_resolucao) DESC LIMIT 6');
+        return $query->result(); 
+    }
 
 }

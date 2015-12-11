@@ -64,7 +64,7 @@ class Admin extends CI_Controller {
         if ($this->is_logged() && $this->is_admin()) {
             $nome = $this->input->post("nome");
             $prioridade = $this->input->post("prioridade");
-            if ($nome && $prioridade) {
+            if ($nome && $prioridade !== false) {
                 $this->load->model("bloco_model");
                 $m_bloco = new Bloco_Model;
 
@@ -101,7 +101,7 @@ class Admin extends CI_Controller {
             $prioridade = $this->input->post("prioridade");
             $excluir = $this->input->post("excluir");
             
-            if ($nome && $prioridade) {
+            if ($nome && $prioridade !== false) {
                 if($excluir){
                     $m_bloco->deleteBloco($id_bloco);
                     redirect("admin");
@@ -176,7 +176,7 @@ class Admin extends CI_Controller {
             $excluir = $this->input->post("excluir");
             $novo_bloco = $this->input->post("id_bloco");
             
-            if(!$novo_bloco){
+            if(!$novo_bloco || $novo_bloco == 0){
                 $novo_bloco = $id_bloco;
             }
             
@@ -275,7 +275,7 @@ class Admin extends CI_Controller {
             $excluir = $this->input->post("excluir");
             $nova_sala = $this->input->post("nova_sala");
             
-            if(!$nova_sala){
+            if(!$nova_sala || $nova_sala == 0){
                 $nova_sala = $id_sala;
             }
             
@@ -301,8 +301,12 @@ class Admin extends CI_Controller {
                 $this->load->view('core/head');
                 $data["logged"] = $this->is_logged();
                 $this->load->view("core/cabecalho", $data);
+                
+                $this->load->model("tipo_model");
+                $tipo = $this->tipo_model->getTipoById($equipamento[0]->Tipo_idTipo);
+                
                 $data["caminho"] = "<a href=\"".url("admin/bloco/$id_bloco")."\">{$bloco[0]->nome}</a>"
-                . " - <a href=\"".url("admin/sala/$id_sala")."\">{$sala[0]->nome}</a> - Equipamento:";
+                . " - <a href=\"".url("admin/sala/$id_sala")."\">{$sala[0]->nome}</a> - {$tipo[0]->nome}:";
                 $data["titulo_cabecalho"] = $equipamento[0]->codigo;
                 $this->load->view("core/area_admin", $data);
                 $this->load->model("equipamento_model");
