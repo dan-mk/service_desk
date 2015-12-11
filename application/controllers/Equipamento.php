@@ -52,8 +52,10 @@ class Equipamento extends CI_Controller {
             $m_bloco = new Bloco_Model;
             $bloco = $m_bloco->getBlocoById($id_bloco);
             
+            $this->load->model("tipo_model");
+            $tipo = $this->tipo_model->getTipoById($equipamento[0]->Tipo_idTipo);
             
-            $data["caminho"] = "<a href=\"".url("sala/$id_sala")."\">{$sala[0]->nome}</a> - Equipamento:";
+            $data["caminho"] = "<a href=\"".url("sala/$id_sala")."\">{$sala[0]->nome}</a> - {$tipo[0]->nome}:";
             $this->load->view("equipamento/index", $data);
         }
     }

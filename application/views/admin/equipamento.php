@@ -19,6 +19,7 @@
                     ?>
                 </select>
                 
+                <span class="input-text">Exclusão do equipamento</span>
                 <input id="excluir" name="excluir" type="checkbox" />
                 <label for="excluir">Excluir este equipamento</label>
                 <p id="assinalou_excluir"> 

@@ -17,4 +17,9 @@ class Tipo_Model extends CI_Model {
         return $this->db->get('tipo')->result();
     }
     
+    public function getTipoById($id_tipo){
+        $this->db->where("idtipo", $id_tipo);
+        return $this->db->get('tipo')->result();
+    }
+    
 }
