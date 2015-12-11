@@ -400,7 +400,7 @@ a{
     background: #efefef;
 }
 
-.equipamento div{
+.equipamento > div{
     padding: 16px 22px;
 }
 

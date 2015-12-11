@@ -6,6 +6,11 @@ class Problema_Model extends CI_Model {
         parent::__construct();
     }
     
+    public function getProblemaById($id_problema) {
+        $this->db->where("idproblema", $id_problema);
+        return $this->db->get('problema')->result();
+    }
+    
     public function getActiveFromEquipamento($id_equipamento) {
         $this->db->where("equipamento_idequipamento", $id_equipamento);
         $this->db->where("idproblema NOT IN (SELECT problema_idproblema FROM resolucao)");
